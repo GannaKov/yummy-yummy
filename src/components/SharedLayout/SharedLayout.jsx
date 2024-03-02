@@ -1,4 +1,4 @@
-import React from "react";
+import { NavLink } from "react-router-dom";
 
 const SharedLayout = () => {
   return (
@@ -6,7 +6,15 @@ const SharedLayout = () => {
       <header>
         <nav>
           <ul>
-            <li></li>
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
+            <li>
+              <NavLink to="/restaurants">Restaurants</NavLink>
+            </li>
+            <li>
+              <NavLink to="">Log In</NavLink>
+            </li>
           </ul>
         </nav>
       </header>
