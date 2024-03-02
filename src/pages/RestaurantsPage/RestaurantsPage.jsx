@@ -30,9 +30,8 @@ const RestaurantsPage = () => {
     <Center>
     <Grid templateColumns='repeat(3, 1fr)' gap={10}  >
       {restaurants.filter((item)=>{return search.toLowerCase()=== '' ? item : item.name.toLowerCase().includes(search)}).map(restaurant => (
-        <Link to={`${restaurant.id}`}>
+        <Link key={restaurant.id} to={`${restaurant.id}`}>
             <Box w='100%' h='10'
-             key={restaurant.id}
               p={2}
               shadow="md"
               borderWidth="1px"
