@@ -1,16 +1,35 @@
 import { NavLink, Outlet } from "react-router-dom";
+import styles from "./SharedLayout.module.css";
 
 const SharedLayout = () => {
   return (
-    <div>
-      <header>
+    <div className={styles.wrapper}>
+      <header className={styles.headerWrp}>
         <nav>
-          <ul>
+          <ul className={styles.navList}>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.active} ${styles.headerNavLink}`
+                    : `${styles.headerNavLink}`
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/restaurants">Restaurants</NavLink>
+              <NavLink
+                to="/restaurants"
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.active} ${styles.headerNavLink}`
+                    : `${styles.headerNavLink}`
+                }
+              >
+                Restaurants
+              </NavLink>
             </li>
             <li>
               <NavLink to="">Log In</NavLink>
