@@ -7,16 +7,12 @@ import styles from "./DetailsPage.module.css";
 import Map from "../../components/Map/Map";
 
 import {
-  Box,
   Card,
   CardBody,
   CardFooter,
-  SimpleGrid,
-  Divider,
   Heading,
   Stack,
   Text,
-  Image,
 } from "@chakra-ui/react";
 
 const DetailsPage = () => {
@@ -45,7 +41,6 @@ const DetailsPage = () => {
           </button>
         </Link>
       </div>
-      {/* <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">  </Box> */}
 
       {isLoading && <SpinnerOur />}
       {restaurant && (
@@ -89,7 +84,6 @@ const DetailsPage = () => {
                 </div>
 
                 <div className={styles.restTimeInnerWrp}>
-                  {" "}
                   <p className={styles.restTimeDay}>Thursday</p>
                   <div className={styles.restTimeWrp}>
                     <p>{restaurant.timetable.Thursday.open}</p> <p>-</p>

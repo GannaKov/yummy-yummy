@@ -24,7 +24,6 @@
   grid-template-rows: 1fr;
   grid-column-gap: px;
   grid-row-gap: 0px;
-  /* display: flex; */
 }
 .restTimeWrp {
   display: flex;
@@ -34,8 +33,6 @@
   display: flex;
 }
 .wbsGoBackWrp {
-  /* margin-top: 2rem;
-  margin-bottom: 3rem; */
   display: flex;
   justify-content: center;
   padding: 2rem 0 3rem;
