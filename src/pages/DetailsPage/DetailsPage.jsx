@@ -26,7 +26,7 @@ const DetailsPage = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getSingleRestaurantById("2")
+    getSingleRestaurantById(id)
       .then((res) => {
         setRestaurant(res);
         console.log("res", res);
