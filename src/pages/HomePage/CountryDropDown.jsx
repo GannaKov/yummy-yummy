@@ -1,63 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Form, FormControl, Dropdown } from 'react-bootstrap';
 
-const CountryDropdown = () => {
-  const [countries, setCountries] = useState([]);
+const cities = ["Rome", "Tokyo", "Bangkok", "Barcelona", "New York", "Portland, Oregon, USA"];
+
+const CountryDropdown = ({ onSelectCity }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredCountries, setFilteredCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [filteredCities, setFilteredCities] = useState([]);
+  const [selectedCity, setSelectedCity] = useState(null);
 
   useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const response = await axios.get('https://restcountries.com/v2/all');
-        setCountries(response.data);
-      } catch (error) {
-        console.error('Error fetching countries:', error);
-      }
-    };
-
-    fetchCountries();
-  }, []);
-
-  useEffect(() => {
-    const filtered = countries.filter(country =>
-      country.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filtered = cities.filter(city =>
+      city.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredCountries(filtered);
-  }, [countries, searchTerm]);
+    setFilteredCities(filtered);
+  }, [searchTerm]);
 
-  const handleCountrySelect = (country) => {
-    setSelectedCountry(country);
+  const handleCitySelect = (city) => {
+    setSelectedCity(city);
+    onSelectCity(city);
   };
 
   return (
     <div>
-
       <Dropdown>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
-
-          {selectedCountry ? selectedCountry.name : 'Select a Country'}
+          {selectedCity ? selectedCity : 'Select a City'}
         </Dropdown.Toggle>
-
         <Dropdown.Menu>
-        <Form className="m-3">
-        <FormControl
-          type="text"
-          placeholder="Search"
-          className="mr-sm-2"
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </Form>
-          {filteredCountries.map(country => (
+          <Form className="m-3">
+            <FormControl
+              type="text"
+              placeholder="Search"
+              className="mr-sm-2"
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </Form>
+          {filteredCities.map(city => (
             <Dropdown.Item
-              key={country.alpha2Code}
+              key={city}
               onClick={() => {
-                handleCountrySelect(country);
+                handleCitySelect(city);
               }}
             >
-              {country.name}
+              {city}
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>
