@@ -60,7 +60,7 @@ const HomePage = () => {
       <div className={styles.background}>
         <div className={styles.searchFields}>
           <Input
-            placeholder='Search for your restaurant here...'
+            placeholder='What would you like to eat today...'
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyPress={handleKeyPress}
@@ -77,8 +77,16 @@ const HomePage = () => {
         </div>
       </div>
       <div className={styles.filteredResults}>
-        <h2>Filtered Results</h2>
-        <p>Number of hits: {filteredRestaurants.length}</p>
+      <Link to="/restaurants">  
+      <Box p={4} borderWidth="1px" borderRadius="lg" mb={4}>
+      <Text fontSize="xl" fontWeight="bold">
+        Number of hits: {filteredRestaurants.length}
+      </Text>
+      <Text fontSize="lg" mt={2}>
+        See more info about the most popular restaurants
+      </Text>
+    </Box>
+    </Link>
         {filteredRestaurants.map(restaurant => (
           <Flex
             key={restaurant.id}
@@ -89,13 +97,13 @@ const HomePage = () => {
             p="4"
           >
             <Box>
-              <Link to="/restaurants">
+
                 <Text fontSize="xl" fontWeight="bold">
                   {restaurant.name}
                 </Text>
               <Text>City: {restaurant.city_name}</Text>
-              <Text>Tags: {restaurant.tags.map(tag => tag.name).join(', ')}</Text>
-              </Link>
+              <Text>Cousine: {restaurant.tags.map(tag => tag.name).join(', ')}</Text>
+
               </Box>
 
 
