@@ -1,0 +1,35 @@
+.wrapper {
+  display: grid;
+}
+.headerWrp {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.236);
+  box-shadow: 0px 1px 3px #6d035f1f, 0px 0px 5px rgba(114, 40, 121, 0.06),
+    0px 0px 8px rgba(0, 0, 0, 0.16);
+}
+
+.navList {
+  /* background-color: rgba(81, 23, 136, 0.131); */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+.headerNavLink {
+  font-family: "Kavoon", serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: black;
+}
+.headerNavLink:is(:hover, :focus) {
+  text-decoration: underline;
+  text-decoration-thickness: 0.2rem;
+}
+.headerNavLink.active {
+  color: rgb(250, 3, 3);
+  text-decoration: underline;
+  text-decoration-thickness: 0.1rem;
+}
+.headerNavLink.active:is(:hover, :focus) {
+  text-decoration: underline;
+  text-decoration-thickness: 0.2rem;
+}
