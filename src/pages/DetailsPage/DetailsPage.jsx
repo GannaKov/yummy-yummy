@@ -1,9 +1,11 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SpinnerOur from "../../components/Spinner/Spinner";
-import { testRest } from "../../fakeData";
+
 import { getSingleRestaurantById } from "../../services/requests";
 import styles from "./DetailsPage.module.css";
+import Map from "../../components/Map/Map";
+
 import {
   Box,
   Card,
@@ -36,6 +38,13 @@ const DetailsPage = () => {
   }, [id]);
   return (
     <div className={styles.pageWrp}>
+      <div className={styles.wbsGoBackWrp}>
+        <Link to="/restaurants">
+          <button className={styles.wbsGoBackBtn}>
+            &larr; Back to products
+          </button>
+        </Link>
+      </div>
       {/* <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">  </Box> */}
 
       {isLoading && <SpinnerOur />}
@@ -117,10 +126,7 @@ const DetailsPage = () => {
                 <CardBody>
                   <Heading size="sm">{restaurant.name}</Heading>
 
-                  <Text py="2">
-                    Caffè latte is a coffee beverage of Italian origin made with
-                    espresso and steamed milk.
-                  </Text>
+                  <Map />
                 </CardBody>
 
                 <CardFooter>
