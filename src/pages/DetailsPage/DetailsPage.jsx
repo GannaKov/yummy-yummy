@@ -2,128 +2,119 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SpinnerOur from "../../components/Spinner/Spinner";
 import { testRest } from "../../fakeData";
+import { getSingleRestaurantById } from "../../services/requests";
+import styles from "./DetailsPage.module.css";
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  SimpleGrid,
+  Divider,
+  Heading,
+  Stack,
+  Text,
+  Image,
+} from "@chakra-ui/react";
 
 const DetailsPage = () => {
-  const [restaurant, setRestaurant] = useState({
-    _id: "65e2fd7d27311941a95af56d",
-    id: 1,
-    name: "Italian Pizzeria",
-    city_name: "Rome",
-    address: "Via della Magliana, 224, 00146 Roma RM, Italy",
-    img_url:
-      "https://www.remessaonline.com.br/blog/wp-content/uploads/2022/05/culinaria-italiana-1170x762.jpg.webp",
-    timetable: {
-      Monday: {
-        open: "10:00 AM",
-        close: "10:00 PM",
-        _id: "65e2fd7d27311941a95af56f",
-      },
-      Tuesday: {
-        open: "10:00 AM",
-        close: "10:00 PM",
-        _id: "65e2fd7d27311941a95af570",
-      },
-      Wednesday: {
-        open: "10:00 AM",
-        close: "10:00 PM",
-        _id: "65e2fd7d27311941a95af571",
-      },
-      Thursday: {
-        open: "10:00 AM",
-        close: "10:00 PM",
-        _id: "65e2fd7d27311941a95af572",
-      },
-      Friday: {
-        open: "10:00 AM",
-        close: "11:00 PM",
-        _id: "65e2fd7d27311941a95af573",
-      },
-      Saturday: {
-        open: "10:00 AM",
-        close: "11:00 PM",
-        _id: "65e2fd7d27311941a95af574",
-      },
-      Sunday: {
-        open: "10:00 AM",
-        close: "10:00 PM",
-        _id: "65e2fd7d27311941a95af575",
-      },
-      _id: "65e2fd7d27311941a95af56e",
-    },
-    comments: [
-      {
-        id: 1,
-        content: "Authentic Italian pizza, a must-try!",
-        _id: "65e2fd7d27311941a95af576",
-      },
-      {
-        id: 2,
-        content: "Great ambiance and delicious food.",
-        _id: "65e2fd7d27311941a95af577",
-      },
-    ],
-    tags: [
-      {
-        id: 1,
-        name: "Italian food",
-        _id: "65e2fd7d27311941a95af578",
-      },
-      {
-        id: 2,
-        name: "Pizza",
-        _id: "65e2fd7d27311941a95af579",
-      },
-    ],
-    createdAt: "2024-03-02T10:20:45.330Z",
-    updatedAt: "2024-03-02T10:20:45.330Z",
-    __v: 0,
-  });
+  const [restaurant, setRestaurant] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   getSingleUserById(id)
-  //     .then((res) => {
-  //       setUser(res);
-  //     })
-  //     .catch((error) => console.log(error.message))
-  //     .finally(() => {
-  //       setLoading(false);
-  //       setIsFetch(true);
-  //     });
-  // }, [id]);
+  useEffect(() => {
+    setIsLoading(true);
+    getSingleRestaurantById("2")
+      .then((res) => {
+        setRestaurant(res);
+        console.log("res", res);
+      })
+      .catch((error) => console.log(error.message))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [id]);
   return (
     <div>
       {isLoading && <SpinnerOur />}
-      <h1>{restaurant.name}</h1>
-      <img src={restaurant.img_url} alt={restaurant.name} />
+      {restaurant && (
+        <>
+          {" "}
+          <h1>{restaurant.name}</h1>
+          <img src={restaurant.img_url} alt={restaurant.name} />
+          <p>{restaurant.city_name}</p>
+          <p>{restaurant.address}</p>
+          <Card
+            direction={{ base: "column", sm: "row" }}
+            overflow="hidden"
+            variant="outline"
+          >
+            <div className={styles.timeTableWrp}>
+              <p>Monday</p>
+              <div>
+                <p>{restaurant.timetable.Monday.open}</p>
+                <p>{restaurant.timetable.Monday.close}</p>
+              </div>
 
-      <p>{restaurant.city_name}</p>
-      <p>{restaurant.address}</p>
-      <div>
-        <p>Monday</p>
-        <p>{restaurant.timetable.Monday.open}</p>
-        <p>{restaurant.timetable.Monday.close}</p>
-        <p>Tuesday</p>
-        <p>{restaurant.timetable.Tuesday.open}</p>
-        <p>{restaurant.timetable.Tuesday.close}</p>
-        <p>Wednesday</p>
-        <p>{restaurant.timetable.Wednesday.open}</p>
-        <p>{restaurant.timetable.Wednesday.close}</p>
-        <p>Thursday</p>
-        <p>{restaurant.timetable.Thursday.open}</p>
-        <p>{restaurant.timetable.Thursday.close}</p>
-        <p>Friday</p>
-        <p>{restaurant.timetable.Friday.open}</p>
-        <p>{restaurant.timetable.Friday.close}</p>
-        <p>Saturday</p>
-        <p>{restaurant.timetable.Saturday.open}</p>
-        <p>{restaurant.timetable.Saturday.close}</p>
-        <p>Sunday</p>
-        <p>{restaurant.timetable.Sunday.open}</p>
-        <p>{restaurant.timetable.Sunday.close}</p>
-      </div>
+              <p>Tuesday</p>
+              <div>
+                <p>{restaurant.timetable.Tuesday.open}</p>
+                <p>{restaurant.timetable.Tuesday.close}</p>
+              </div>
+
+              <p>Wednesday</p>
+              <div>
+                <p>{restaurant.timetable.Wednesday.open}</p>
+                <p>{restaurant.timetable.Wednesday.close}</p>
+              </div>
+
+              <p>Thursday</p>
+              <div>
+                {" "}
+                <p>{restaurant.timetable.Thursday.open}</p>
+                <p>{restaurant.timetable.Thursday.close}</p>
+              </div>
+
+              <p>Friday</p>
+              <div>
+                <p>{restaurant.timetable.Friday.open}</p>
+                <p>{restaurant.timetable.Friday.close}</p>
+              </div>
+
+              <p>Saturday</p>
+              <div>
+                <p>{restaurant.timetable.Saturday.open}</p>
+                <p>{restaurant.timetable.Saturday.close}</p>
+              </div>
+
+              <p>Sunday</p>
+              <div>
+                <p>{restaurant.timetable.Sunday.open}</p>
+                <p>{restaurant.timetable.Sunday.close}</p>
+              </div>
+            </div>
+
+            <Stack>
+              <CardBody>
+                <Heading size="sm">{restaurant.name}</Heading>
+
+                <Text py="2">
+                  Caffè latte is a coffee beverage of Italian origin made with
+                  espresso and steamed milk.
+                </Text>
+              </CardBody>
+
+              <CardFooter>
+                <Text variant="solid" colorScheme="blue">
+                  {restaurant.city_name}
+                </Text>
+                <Text variant="solid" colorScheme="blue">
+                  {restaurant.address}
+                </Text>
+              </CardFooter>
+            </Stack>
+          </Card>
+        </>
+      )}
     </div>
   );
 };
