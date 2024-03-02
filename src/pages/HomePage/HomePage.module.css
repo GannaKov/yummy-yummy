@@ -1,0 +1,12 @@
+.searchFields {
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
+    margin  : 0 auto;
+    padding-top: 20px;
+}
+
+.dropdownCountries {
+    margin-left: 20px;
+
+}
