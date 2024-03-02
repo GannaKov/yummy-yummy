@@ -1,0 +1,32 @@
+.pageWrp {
+  padding: 2rem 1rem;
+  margin: 0 auto;
+}
+.restTitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.restImg {
+  margin: 0 auto;
+  width: 900px;
+  margin-bottom: 4rem;
+}
+.timeTableWrp {
+  width: 400px;
+}
+.restTimeInnerWrp {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: px;
+  grid-row-gap: 0px;
+  /* display: flex; */
+}
+.restTimeWrp {
+  display: flex;
+  gap: 1rem;
+}
+.restTimeDay {
+  display: flex;
+}
